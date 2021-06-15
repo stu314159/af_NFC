@@ -18,6 +18,4 @@ class AFLattice
 
 };
 
-
-
 #endif

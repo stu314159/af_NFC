@@ -14,6 +14,7 @@ class AFLattice
     ~AFLattice();
   
   private:
+    int afNFC_initialize();
 
 
 };

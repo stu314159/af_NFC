@@ -29,7 +29,7 @@ void Problem::load_input(){
   input_params >> lConvFact;
   input_params >> pConvFact;
   input_params >> pRefIdx;
-  input_params >> ssDataFlag;
+  
   input_params.close();
 
 

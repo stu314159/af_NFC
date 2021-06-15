@@ -1,5 +1,7 @@
 #include <arrayfire.h>
 #include <af/cuda.h>
+#include <iostream>
+
 
 //CUDA includes
 #include <cuda_runtime.h>
@@ -13,6 +15,7 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
+  cout << "Commencing afNFC execution. " << endl;
   af::info();
   
   AFLattice myLattice;

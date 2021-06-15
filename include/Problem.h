@@ -37,8 +37,7 @@ public:
   double lConvFact;
   double pConvFact;
   int pRefIdx;   // node index for reference pressure
-  int ssDataFlag;  // [0 = do not take subset data | 1 = take subset data ]
-
+  
 
   private:
 

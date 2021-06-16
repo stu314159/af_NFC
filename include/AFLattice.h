@@ -6,6 +6,8 @@
 
 #include "Problem.h"
 
+using namespace af;
+
 class AFLattice
 {
   public:
@@ -15,6 +17,13 @@ class AFLattice
   
   private:
     int afNFC_initialize();
+    int nnodes;
+    const int numSpd;
+    array fEven;
+    array fOdd;
+    array SNL;
+    array INL;
+    array ONL;
 
 
 };

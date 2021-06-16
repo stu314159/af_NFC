@@ -14,9 +14,9 @@ __global__ void D3Q19_RegBC_LBGK_ts(const double * fIn, double * fOut,
   int tid=threadIdx.x+blockIdx.x*blockDim.x;
   int nnodes=Nx*Ny*Nz;
   if(tid<nnodes){
-    float f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18;
-    float cu;
-    float w;
+    double f0,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18;
+    double cu;
+    double w;
     //load the data into the registers
     f0=fIn[tid]; f1=fIn[nnodes+tid];
     f2=fIn[2*nnodes+tid]; f3=fIn[3*nnodes+tid];
@@ -29,10 +29,10 @@ __global__ void D3Q19_RegBC_LBGK_ts(const double * fIn, double * fOut,
     f16=fIn[16*nnodes+tid]; f17=fIn[17*nnodes+tid];
     f18=fIn[18*nnodes+tid];
     //compute density and velocity
-    float rho = f0+f1+f2+f3+f4+f5+f6+f7+f8+f9+f10+f11+f12+f13+f14+f15+f16+f17+f18;
-    float ux=f1-f2+f7-f8+f9-f10+f11-f12+f13-f14; ux/=rho;
-    float uy=f3-f4+f7+f8-f9-f10+f15-f16+f17-f18; uy/=rho;
-    float uz=f5-f6+f11+f12-f13-f14+f15+f16-f17-f18; uz/=rho;
+    double rho = f0+f1+f2+f3+f4+f5+f6+f7+f8+f9+f10+f11+f12+f13+f14+f15+f16+f17+f18;
+    double ux=f1-f2+f7-f8+f9-f10+f11-f12+f13-f14; ux/=rho;
+    double uy=f3-f4+f7+f8-f9-f10+f15-f16+f17-f18; uy/=rho;
+    double uz=f5-f6+f11+f12-f13-f14+f15+f16-f17-f18; uz/=rho;
 
     //take appropriate action if on PE_nl or VW_nl
     if(VW_nl[tid]==1){
@@ -50,7 +50,7 @@ __global__ void D3Q19_RegBC_LBGK_ts(const double * fIn, double * fOut,
       ux=0.; uy=0.; uz=0.;
     }
     //everyone compute equilibrium
-    float fe0,fe1,fe2,fe3,fe4,fe5,fe6,fe7,fe8,fe9,fe10,fe11,fe12,fe13,fe14,fe15,fe16,fe17,fe18;
+    double fe0,fe1,fe2,fe3,fe4,fe5,fe6,fe7,fe8,fe9,fe10,fe11,fe12,fe13,fe14,fe15,fe16,fe17,fe18;
 
    //speed 0, ex=ey=ez=0, w=1/3
     fe0=rho*(1./3.)*(1.-1.5*(ux*ux+uy*uy+uz*uz));
@@ -114,7 +114,7 @@ __global__ void D3Q19_RegBC_LBGK_ts(const double * fIn, double * fOut,
 
     if((VW_nl[tid]==1) || (PE_nl[tid]==1)){
       //float ft0;
-      float ft1,ft2,ft3,ft4,ft5,ft6,ft7,ft8,ft9,ft10,ft11,ft12,ft13,ft14,ft15,ft16,ft17,ft18;
+      double ft1,ft2,ft3,ft4,ft5,ft6,ft7,ft8,ft9,ft10,ft11,ft12,ft13,ft14,ft15,ft16,ft17,ft18;
       if(VW_nl[tid]==1){
 	//bounce-back of non-equilibrium for unknown velocities on west boundary
 	f5=fe5+(f6-fe6); 
